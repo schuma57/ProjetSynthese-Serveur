@@ -22,7 +22,7 @@ public class FrameActiveRender
         try
         {
             JFrame fen = new JFrame("Dessin de formes geometriques");
-            fen.setBounds(30, 60, 400, 400);
+            fen.setBounds(30, 60, 800, 600);
             fen.setVisible(true);
             fen.setIgnoreRepaint(true);
 
@@ -36,9 +36,6 @@ public class FrameActiveRender
             BufferStrategy strategie = canvas.getBufferStrategy();
             
             graphics = strategie.getDrawGraphics();
-            
-            //graphics.drawLine(1, 1, 100, 1);
-            //graphics.drawLine(30, 100, 100, 30);
             
             //graphics.dispose();
         }

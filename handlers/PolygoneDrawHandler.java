@@ -24,12 +24,22 @@ public class PolygoneDrawHandler implements DrawHandler
 		}
 		else
 		{
+			for (int i = 1; i < tabStrings.length - 3; i = i+2) {
+				FrameActiveRender.getGraphics().drawLine(
+						Integer.parseInt(tabStrings[i]),
+						Integer.parseInt(tabStrings[i+1]),
+						Integer.parseInt(tabStrings[i+2]),
+						Integer.parseInt(tabStrings[i+3])
+				);
+			}
+			
 			FrameActiveRender.getGraphics().drawLine(
 					Integer.parseInt(tabStrings[1]),
 					Integer.parseInt(tabStrings[2]),
-					Integer.parseInt(tabStrings[3]),
-					Integer.parseInt(tabStrings[4])
+					Integer.parseInt(tabStrings[tabStrings.length - 2]),
+					Integer.parseInt(tabStrings[tabStrings.length - 1])
 			);
+
 			System.out.println("c'est un polygone !");
 		}
 	}
