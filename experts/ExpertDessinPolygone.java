@@ -1,31 +1,24 @@
-package handlers;
+package experts;
 
 import activerender.FrameActiveRender;
-import interfaces.DrawHandler;
 
-public class PolygoneDrawHandler implements DrawHandler
-{
-	private DrawHandler next;
-	
-	@Override
-	public void setNext(DrawHandler handler)
-	{
-		next = handler;
-	}
+public class ExpertDessinPolygone extends ExpertDessin
+{	
 
 	@Override
-	public void handleRequest(String forme)
+	public void expertAction(String forme)
 	{
 		String[] tabStrings = forme.split(" ");
 		if( !tabStrings[0].equals("Poly") )
 		{
 			System.out.println("ce n'est pas un polygone");
-			next.handleRequest(forme);
+			next.expertAction(forme);
 		}
 		else
-		{
-			for (int i = 1; i < tabStrings.length - 3; i = i+2) {
-				FrameActiveRender.getGraphics().drawLine(
+		{   
+			FrameActiveRender.changerCouleur(tabStrings[1]);
+			for (int i = 2; i < tabStrings.length - 3; i = i+2) {
+				FrameActiveRender.dessinerLigne(
 						Integer.parseInt(tabStrings[i]),
 						Integer.parseInt(tabStrings[i+1]),
 						Integer.parseInt(tabStrings[i+2]),
@@ -33,9 +26,9 @@ public class PolygoneDrawHandler implements DrawHandler
 				);
 			}
 			
-			FrameActiveRender.getGraphics().drawLine(
-					Integer.parseInt(tabStrings[1]),
+			FrameActiveRender.dessinerLigne(
 					Integer.parseInt(tabStrings[2]),
+					Integer.parseInt(tabStrings[3]),
 					Integer.parseInt(tabStrings[tabStrings.length - 2]),
 					Integer.parseInt(tabStrings[tabStrings.length - 1])
 			);

@@ -1,4 +1,4 @@
-package testreseau;
+package reseautcp;
 
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -8,7 +8,7 @@ import java.net.Socket;
  *
  * @author iggiotti2u
  */
-public class TestServerDessin
+public class ServeurDessin
 {
     @SuppressWarnings("resource")
 	public static void main(String[] args)throws Exception

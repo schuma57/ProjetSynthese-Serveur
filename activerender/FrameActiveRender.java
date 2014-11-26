@@ -1,8 +1,11 @@
 package activerender;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.lang.reflect.Field;
+
 import javax.swing.JFrame;
 
 /**
@@ -11,6 +14,8 @@ import javax.swing.JFrame;
  */
 public class FrameActiveRender
 {
+	private final static int hauteur = 600;
+	private final static int largeur = 800;
     private static Graphics graphics;
     private static FrameActiveRender fenetre = null;
     
@@ -22,7 +27,7 @@ public class FrameActiveRender
         try
         {
             JFrame fen = new JFrame("Dessin de formes geometriques");
-            fen.setBounds(30, 60, 800, 600);
+            fen.setBounds(30, 30, largeur, hauteur);
             fen.setVisible(true);
             fen.setIgnoreRepaint(true);
 
@@ -53,15 +58,48 @@ public class FrameActiveRender
     	return fenetre;
     }
     
-    public static Graphics getGraphics()
+    private static Color creerCouleur(String s)
+	{
+		Field field;
+		Color ma_color = null;
+		try
+		{
+			field = Class.forName("java.awt.Color").getField( s );
+			ma_color = (Color)field.get(null);
+		} catch (Exception e)
+		{
+			ma_color = null;
+		}
+		
+		return ma_color;
+	}
+    
+    private static Graphics getGraphics()
     {
     	FrameActiveRender.getFenetre();
 		return FrameActiveRender.graphics;
     }
     
-    public void dessinerLigne(int x1, int y1, int x2, int y2)
+    
+    public static void changerCouleur(String couleur)
     {
-    	graphics.drawLine(x1, y1, x2, y2);
-    	graphics.dispose();
+    	getGraphics().setColor( creerCouleur(couleur) );
     }
+    
+    public static void dessinerLigne(int x1, int y1, int x2, int y2)
+    {
+    	getGraphics().drawLine(x1 + largeur/2, -y1 + hauteur/2,
+    			x2 + largeur/2, -y2 + hauteur/2 );
+    }
+    
+    public static void dessinerCercle(int x, int y, int rayon)
+    {
+    	getGraphics().drawOval(
+				(x + largeur/2) - (rayon/2) ,
+				(-y + hauteur/2) - (rayon/2),
+				rayon,
+				rayon
+		);
+    }
+    
 }
