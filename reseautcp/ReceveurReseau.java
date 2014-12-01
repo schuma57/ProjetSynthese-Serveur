@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
+import activerender.FrameActiveRender;
+
 
 /**
  *
@@ -37,7 +39,8 @@ public class ReceveurReseau extends Thread
     {
         String ligne;
         ExpertDessinFacade facade = new ExpertDessinFacade();
-
+        FrameActiveRender fenetre = new FrameActiveRender(noConnexion);
+        
         try
         {
             while (!isInterrupted())
@@ -45,7 +48,7 @@ public class ReceveurReseau extends Thread
                 ligne = fluxEntrant.readLine(); // saisit le texte du client
                 System.out.print(" le client n° "+this.noConnexion+" a envoyé : \n");
                 
-                facade.formeReceived(ligne);
+                facade.formeReceived(ligne, fenetre);
                 sleep(4);
             }
         }

@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 
 /**
  * <p> FrameActiveRender est la classe qui gère la fenêtre servant à afficher des formes géométriques.
- * Cette classe est en singleton. </p>
+ * </p>
  *
  * @author iggiotti2u
  */
@@ -30,21 +30,16 @@ public class FrameActiveRender
 	/**
      * Le graphics est nécessaire pour dessiner dans le fenêtre
      */
-    private static Graphics graphics;
-    
-    /**
-     * L'instance unique de la fenêtre
-     */
-    private static FrameActiveRender fenetre = null;
+    private Graphics graphics;
     
     /**
      * Constructeur de la fenêtre.
      */
-    private FrameActiveRender()
+    public FrameActiveRender(int nbConnexion)
     {
         try
         {
-            JFrame fen = new JFrame("Dessin de formes geometriques");
+            JFrame fen = new JFrame("Dessin de formes geometriques, connexion nb " +nbConnexion);
             fen.setBounds(30, 30, largeur, hauteur);
             fen.setVisible(true);
             fen.setIgnoreRepaint(true);
@@ -69,18 +64,6 @@ public class FrameActiveRender
             
         }
     } //end construct
-
-    /**
-     * 
-     * @return l'instance unique de fenêtre.
-     */
-    public static FrameActiveRender getFenetre()
-    {
-    	if(fenetre == null)
-    		fenetre = new FrameActiveRender();
-    	
-    	return fenetre;
-    }
     
     /**
      * Création d'une awt.Color à partir d'une string
@@ -88,7 +71,7 @@ public class FrameActiveRender
      * @param couleur
      * @return une awt.Color .
      */
-    private static Color creerCouleur(String couleur)
+    private Color creerCouleur(String couleur)
 	{
 		Field field;
 		Color ma_color = null;
@@ -106,12 +89,11 @@ public class FrameActiveRender
     
     /**
      * 
-     * @return l'instance unique du graphics.
+     * @return l'instance du graphics.
      */
-    private static Graphics getGraphics()
+    private Graphics getGraphics()
     {
-    	FrameActiveRender.getFenetre();
-		return FrameActiveRender.graphics;
+		return graphics;
     }
     
     /**
@@ -120,7 +102,7 @@ public class FrameActiveRender
      * @param couleur
      * @see FrameActiveRender#creerCouleur(String)
      */
-    public static void changerCouleur(String couleur)
+    public void changerCouleur(String couleur)
     {
     	getGraphics().setColor( creerCouleur(couleur) );
     }
@@ -133,7 +115,7 @@ public class FrameActiveRender
      * @param x2 : point 2
      * @param y2 : point 2
      */
-    public static void dessinerLigne(int x1, int y1, int x2, int y2)
+    public void dessinerLigne(int x1, int y1, int x2, int y2)
     {
     	getGraphics().drawLine(x1 + largeur/2, -y1 + hauteur/2,
     			x2 + largeur/2, -y2 + hauteur/2 );
@@ -146,7 +128,7 @@ public class FrameActiveRender
      * @param y : centre du cercle
      * @param rayon
      */
-    public static void dessinerCercle(int x, int y, int rayon)
+    public void dessinerCercle(int x, int y, int rayon)
     {
     	getGraphics().drawOval(
 				(x + largeur/2) - (rayon/2) ,

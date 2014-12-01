@@ -1,5 +1,7 @@
 package experts;
 
+import activerender.FrameActiveRender;
+
 
 public class ExpertProcess
 {
@@ -16,8 +18,8 @@ public class ExpertProcess
 		prevExpert = expert;
 	}
 	
-	public void expertAction(String forme)
+	public void expertAction(String forme, FrameActiveRender fen)
 	{
-		premier.expertAction(forme);
+		premier.expertAction(forme, fen);
 	}
 }

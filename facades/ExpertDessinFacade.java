@@ -1,5 +1,6 @@
 package facades;
 
+import activerender.FrameActiveRender;
 import experts.*;
 
 public class ExpertDessinFacade
@@ -37,8 +38,8 @@ public class ExpertDessinFacade
 		processor.addExpert(handler);
 	}
 	
-	public void formeReceived(String forme)
+	public void formeReceived(String forme, FrameActiveRender fen)
 	{
-		processor.expertAction(forme);
+		processor.expertAction(forme, fen);
 	}
 }
