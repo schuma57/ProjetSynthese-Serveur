@@ -9,18 +9,36 @@ import java.lang.reflect.Field;
 import javax.swing.JFrame;
 
 /**
+ * <p> FrameActiveRender est la classe qui gère la fenêtre servant à afficher des formes géométriques.
+ * Cette classe est en singleton. </p>
  *
  * @author iggiotti2u
  */
+
 public class FrameActiveRender
 {
+	/**
+	 * Hauteur de la fenêtre en pixels
+	 */
 	private final static int hauteur = 600;
+	
+	/**
+	 * Largeur de la fenêtre en pixels
+	 */
 	private final static int largeur = 800;
+    
+	/**
+     * Le graphics est nécessaire pour dessiner dans le fenêtre
+     */
     private static Graphics graphics;
+    
+    /**
+     * L'instance unique de la fenêtre
+     */
     private static FrameActiveRender fenetre = null;
     
     /**
-     * @param args the command line arguments
+     * Constructeur de la fenêtre.
      */
     private FrameActiveRender()
     {
@@ -41,7 +59,9 @@ public class FrameActiveRender
             BufferStrategy strategie = canvas.getBufferStrategy();
             
             graphics = strategie.getDrawGraphics();
-            
+            graphics.drawLine(largeur / 2 - 5 , hauteur / 2, largeur / 2 + 5 , hauteur / 2);
+            graphics.drawLine(largeur / 2 , hauteur / 2  - 5, largeur / 2  , hauteur / 2 + 5);
+            graphics.drawString("O", largeur / 2 - 10, hauteur / 2 - 5);
             //graphics.dispose();
         }
         catch(InterruptedException e)
@@ -50,6 +70,10 @@ public class FrameActiveRender
         }
     } //end construct
 
+    /**
+     * 
+     * @return l'instance unique de fenêtre.
+     */
     public static FrameActiveRender getFenetre()
     {
     	if(fenetre == null)
@@ -58,13 +82,19 @@ public class FrameActiveRender
     	return fenetre;
     }
     
-    private static Color creerCouleur(String s)
+    /**
+     * Création d'une awt.Color à partir d'une string
+     * 
+     * @param couleur
+     * @return une awt.Color .
+     */
+    private static Color creerCouleur(String couleur)
 	{
 		Field field;
 		Color ma_color = null;
 		try
 		{
-			field = Class.forName("java.awt.Color").getField( s );
+			field = Class.forName("java.awt.Color").getField( couleur );
 			ma_color = (Color)field.get(null);
 		} catch (Exception e)
 		{
@@ -74,24 +104,48 @@ public class FrameActiveRender
 		return ma_color;
 	}
     
+    /**
+     * 
+     * @return l'instance unique du graphics.
+     */
     private static Graphics getGraphics()
     {
     	FrameActiveRender.getFenetre();
 		return FrameActiveRender.graphics;
     }
     
-    
+    /**
+     * Changer la couleur des formes à dessiner
+     * 
+     * @param couleur
+     * @see FrameActiveRender#creerCouleur(String)
+     */
     public static void changerCouleur(String couleur)
     {
     	getGraphics().setColor( creerCouleur(couleur) );
     }
     
+    /**
+     * Dessiner un segment dans la fenêtre
+     * 
+     * @param x1 : point 1
+     * @param y1 : point 1
+     * @param x2 : point 2
+     * @param y2 : point 2
+     */
     public static void dessinerLigne(int x1, int y1, int x2, int y2)
     {
     	getGraphics().drawLine(x1 + largeur/2, -y1 + hauteur/2,
     			x2 + largeur/2, -y2 + hauteur/2 );
     }
     
+    /**
+     * Dessiner un cercle dans la fenêtre
+     * 
+     * @param x : centre du cercle
+     * @param y : centre du cercle
+     * @param rayon
+     */
     public static void dessinerCercle(int x, int y, int rayon)
     {
     	getGraphics().drawOval(
