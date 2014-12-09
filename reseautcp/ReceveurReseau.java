@@ -1,18 +1,17 @@
 package reseautcp;
 
-import facades.ExpertDessinFacade;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
 import activerender.FrameActiveRender;
+import facades.ExpertDessinFacade;
 
 
 /**
- *
- * @author iggiotti2u
+ * Herite de la classe Thread
+ * <p>On instancie cette classe pour chaque client.</p>
  */
 public class ReceveurReseau extends Thread
 {
@@ -35,7 +34,8 @@ public class ReceveurReseau extends Thread
         /* à  présent fluxEntrant est pret pour lire du texte provenant du client */
     }
 
-    public void run()
+    @Override
+	public void run()
     {
         String ligne;
         ExpertDessinFacade facade = new ExpertDessinFacade();

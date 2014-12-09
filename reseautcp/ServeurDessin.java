@@ -6,7 +6,9 @@ import java.net.Socket;
 
 /**
  *
- * @author iggiotti2u
+ * Contient le main
+ * Initialise les connexions des clients
+ * @see ReceveurReseau
  */
 public class ServeurDessin
 {

@@ -1,8 +1,25 @@
 package facades;
 
 import activerender.FrameActiveRender;
-import experts.*;
+import experts.ExpertDessin;
+import experts.ExpertDessinCercle;
+import experts.ExpertDessinPolygone;
+import experts.ExpertDessinSegment;
+import experts.ExpertDessinTriangle;
+import experts.ExpertProcess;
 
+/**
+ * 
+ * Design pattern façade
+ * <p>Cache la complexité en instanciant un {@link ExpertProcess} et en l'initialisant de la sorte :</p>
+ * <p>On traite une requête en testant si c'est un triangle, un segment, un cercle ou un polygone
+ * </p>
+ * @see ExpertDessinCercle
+ * @see ExpertDessinPolygone
+ * @see ExpertDessinSegment
+ * @see ExpertDessinTriangle
+ * @author Yacine
+ */
 public class ExpertDessinFacade
 {
 	/**
@@ -19,6 +36,10 @@ public class ExpertDessinFacade
 		createProcessor();
 	}
 	 
+	/**
+	 * Contruit la chaine de responsabilité
+	 * Les maillons sont liés entre eux
+	 */
 	private void createProcessor()
 	{
 		processor = new ExpertProcess();
@@ -29,6 +50,7 @@ public class ExpertDessinFacade
 	}
 	 
 	/**
+	 * 
 	 * Ajoute un expert
 	 * @param handler
 	 * @see ExpertDessin
@@ -38,6 +60,11 @@ public class ExpertDessinFacade
 		processor.addExpert(handler);
 	}
 	
+	/**
+	 * 
+	 * @param forme : forme géométrique à dessiner
+	 * @param fen : fenêtre dans laquelle dessiner la forme
+	 */
 	public void formeReceived(String forme, FrameActiveRender fen)
 	{
 		processor.expertAction(forme, fen);

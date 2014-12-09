@@ -2,16 +2,29 @@ package experts;
 
 import activerender.FrameActiveRender;
 
+/**
+ * 
+ * Hérite de ExpertDessin
+ * <p>Permet de traiter des requêtes demandant l'affichage d'un polygone</p>
+ * @author Yacine
+ */
 public class ExpertDessinPolygone extends ExpertDessin
 {	
 
+
+	/**
+	 * 
+	 * @see ExpertDessin
+	 * @see FrameActiveRender#dessinerLigne
+	 * @see FrameActiveRender#changerCouleur
+	 **/
 	@Override
 	public void expertAction(String forme, FrameActiveRender fen)
 	{
 		String[] tabStrings = forme.split(" ");
 		if( !tabStrings[0].equals("Poly") )
 		{
-			System.out.println("ce n'est pas un polygone");
+			//System.out.println("ce n'est pas un polygone");
 			next.expertAction(forme, fen);
 		}
 		else

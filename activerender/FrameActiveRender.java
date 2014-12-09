@@ -9,10 +9,11 @@ import java.lang.reflect.Field;
 import javax.swing.JFrame;
 
 /**
+ * 
  * <p> FrameActiveRender est la classe qui gère la fenêtre servant à afficher des formes géométriques.
  * </p>
  *
- * @author iggiotti2u
+ * @author Yacine
  */
 
 public class FrameActiveRender
@@ -33,7 +34,10 @@ public class FrameActiveRender
     private Graphics graphics;
     
     /**
+     * 
      * Constructeur de la fenêtre.
+     * @param nbConnexion : numero de connexion (present dans le titre de la fenetre)
+     * Le repere prend son origine au milieu de la fenetre.
      */
     public FrameActiveRender(int nbConnexion)
     {
@@ -41,6 +45,7 @@ public class FrameActiveRender
         {
             JFrame fen = new JFrame("Dessin de formes geometriques, connexion nb " +nbConnexion);
             fen.setBounds(30, 30, largeur, hauteur);
+            fen.setResizable(false);
             fen.setVisible(true);
             fen.setIgnoreRepaint(true);
 
