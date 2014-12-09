@@ -31,10 +31,10 @@ public class ExpertDessinSegment extends ExpertDessin
 			fen.changerCouleur(tabStrings[1]);
 			System.out.println("c'est un segment !");
 			fen.dessinerLigne(
-					Integer.parseInt(tabStrings[2]),
-					Integer.parseInt(tabStrings[3]),
-					Integer.parseInt(tabStrings[4]),
-					Integer.parseInt(tabStrings[5])
+					(int)Double.parseDouble(tabStrings[2]),
+					(int)Double.parseDouble(tabStrings[3]),
+					(int)Double.parseDouble(tabStrings[4]),
+					(int)Double.parseDouble(tabStrings[5])
 			);
 		}
 	}

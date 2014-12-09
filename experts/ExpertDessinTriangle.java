@@ -31,22 +31,22 @@ public class ExpertDessinTriangle extends ExpertDessin
 			fen.changerCouleur(tabStrings[1]);
 			System.out.println("c'est un triangle !");
 			fen.dessinerLigne(
-					Integer.parseInt(tabStrings[2]),
-					Integer.parseInt(tabStrings[3]),
-					Integer.parseInt(tabStrings[4]),
-					Integer.parseInt(tabStrings[5])
+					(int)Double.parseDouble(tabStrings[2]),
+					(int)Double.parseDouble(tabStrings[3]),
+					(int)Double.parseDouble(tabStrings[4]),
+					(int)Double.parseDouble(tabStrings[5])
 			);
 			fen.dessinerLigne(
-					Integer.parseInt(tabStrings[4]),
-					Integer.parseInt(tabStrings[5]),
-					Integer.parseInt(tabStrings[6]),
-					Integer.parseInt(tabStrings[7])
+					(int)Double.parseDouble(tabStrings[4]),
+					(int)Double.parseDouble(tabStrings[5]),
+					(int)Double.parseDouble(tabStrings[6]),
+					(int)Double.parseDouble(tabStrings[7])
 			);
 			fen.dessinerLigne(
-					Integer.parseInt(tabStrings[2]),
-					Integer.parseInt(tabStrings[3]),
-					Integer.parseInt(tabStrings[6]),
-					Integer.parseInt(tabStrings[7])
+					(int)Double.parseDouble(tabStrings[2]),
+					(int)Double.parseDouble(tabStrings[3]),
+					(int)Double.parseDouble(tabStrings[6]),
+					(int)Double.parseDouble(tabStrings[7])
 			);
 		}		
 	}
